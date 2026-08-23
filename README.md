@@ -29,7 +29,7 @@ different between groups, and then see which method actually finds them.
 |---|---|---|---|---|
 | DESeq2 | RLE | None | Negative binomial | No |
 | MaAsLin2 | TSS | AST (log) | Normal | No |
-| ANCOM-BC2 | Bias correction | — | — | **Yes** |
+| ANCOM-BC2 | Bias correction | Log | Normal (linear model) | Yes |
 
 These aren't just three popular names picked at random — they represent three different
 ways of handling the same underlying problem: microbiome data is compositional, meaning
