@@ -44,12 +44,6 @@ assumes the result behaves roughly like a normal distribution.
 **ANCOM-BC2** takes compositionality seriously from the start and corrects for it
 directly, rather than working around it.
 
-**Why not more methods?** The paper above tested 14. Running all of them would turn
-this into a replication of that study rather than a focused comparison, and most people
-building something like this don't have the time or infrastructure for 14 tools. Three
-is enough to show that the choice of method matters. ALDEx2, Corncob, and metagenomeSeq
-would be natural additions later.
-
 ---
 
 ## How the data is simulated
