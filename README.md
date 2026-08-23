@@ -25,11 +25,11 @@ different between groups, and then see which method actually finds them.
 
 ## Three methods, three approaches
 
-| Tool | Normalisation | Transform | Distribution | Compositionally aware |
-|---|---|---|---|---|
+| Tool | Normalisation | Transform | Distribution / Model | Compositionally aware |
+|------|--------------|------------|----------------------|----------------------|
 | DESeq2 | RLE | None | Negative binomial | No |
-| MaAsLin2 | TSS | AST (log) | Normal | No |
-| ANCOM-BC2 | Bias correction | Log | Normal (linear model) | Yes |
+| MaAsLin2 | TSS | AST (log by default in newer versions) | Linear model | No |
+| ANCOM-BC2 | Bias correction | Internal log transformation | Bias-corrected linear model | **Yes** |
 
 These aren't just three popular names picked at random — they represent three different
 ways of handling the same underlying problem: microbiome data is compositional, meaning
