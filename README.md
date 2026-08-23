@@ -23,7 +23,7 @@ different between groups, and then see which method actually finds them.
 
 ---
 
-## Three methods, three philosophies
+## Three methods, three approaches
 
 | Tool | Normalisation | Transform | Distribution | Compositionally aware |
 |---|---|---|---|---|
@@ -94,22 +94,7 @@ For each method, on each scenario, checked against the planted signal:
 
 ---
 
-## Layout
-
-```text
-Microbiome-Differential-Abundance-Benchmark/
-│
-├── code/
-├── data/
-├── figures/
-├── results/
-│
-└── README.md
-```
-
----
-
-## Running it
+## How to run it
 
 ```r
 BiocManager::install(c("SparseDOSSA2", "DESeq2", "ANCOMBC", "Maaslin2"))
