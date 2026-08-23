@@ -1,8 +1,8 @@
-# Microbiome-Differential-Abundance-Benchmark
+# Microbiome Differential Abundance Benchmark
 
-Which microbiome differential abundance method should you trust? Three tools, three
-different statistical philosophies, tested against simulated data where the answer is
-known in advance.
+Which microbiome differential abundance method should you trust? Three popular tools,
+three different ways of approaching the same problem, tested on simulated data where
+the right answer is already known.
 
 > Learning project. Simulated data, meant to be read and re-run.
 
@@ -10,19 +10,20 @@ known in advance.
 
 ## The problem
 
-Microbiome differential abundance methods frequently disagree on which taxa are
-associated with a phenotype. A comparison across 38 real datasets found substantial
-disagreement among 14 commonly used methods (Nearing et al. 2022, *Nature
-Communications*). Because the true signal in real data is unknown, there is no way to
-score which method was right — disagreement alone doesn't say who is wrong.
+Different microbiome differential abundance methods often give different answers about
+which taxa are linked to a phenotype. A study across 38 real datasets found that 14
+commonly used methods frequently disagreed with each other (Nearing et al. 2022,
+*Nature Communications*).
 
-Simulation solves that by inverting the problem: generate data where the
-differentially-abundant taxa are planted on purpose, then check which methods recover
-them.
+The trouble is, on real data you don't know which method is right. There's no answer
+key to check against — just disagreement, with no way to say who's wrong.
+
+Simulation fixes that. Build the data yourself, decide in advance which taxa are truly
+different between groups, and then see which method actually finds them.
 
 ---
 
-## The three methods, and why these three
+## Three methods, three philosophies
 
 | Tool | Normalisation | Transform | Distribution | Compositionally aware |
 |---|---|---|---|---|
@@ -30,63 +31,66 @@ them.
 | MaAsLin2 | TSS | AST (log) | Normal | No |
 | ANCOM-BC2 | Bias correction | — | — | **Yes** |
 
-Not three arbitrary popular names — three different answers to the same design
-question. DESeq2 models count data directly and serves here as the
-**compositionally-naive baseline**. MaAsLin2 normalises to proportions and assumes
-approximate normality after transformation — a middle ground. ANCOM-BC2 corrects for
-compositional bias explicitly and is the closest thing here to a principled treatment
-of the constraint.
+These aren't just three popular names picked at random — they represent three different
+ways of handling the same underlying problem: microbiome data is compositional, meaning
+the numbers are proportions of a whole rather than independent counts.
 
-**Not included, and why:** the wider comparison (Nearing et al.'s 14 methods, reproduced
-in part below) exists to map an entire ecosystem. That isn't this repo's goal, and
-running all 14 trades feasibility for comprehensiveness neither this analysis nor one
-person's time budget needs. ALDEx2, Corncob and metagenomeSeq are the natural next
-additions — CLR-based, beta-binomial, and zero-inflated respectively — if this is
-extended later.
+**DESeq2** models the counts directly and ignores that issue entirely. It's the
+baseline here — what happens if compositionality is never addressed.
+
+**MaAsLin2** sits in the middle. It normalises the data into proportions first, then
+assumes the result behaves roughly like a normal distribution.
+
+**ANCOM-BC2** takes compositionality seriously from the start and corrects for it
+directly, rather than working around it.
+
+**Why not more methods?** The paper above tested 14. Running all of them would turn
+this into a replication of that study rather than a focused comparison, and most people
+building something like this don't have the time or infrastructure for 14 tools. Three
+is enough to show that the choice of method matters. ALDEx2, Corncob, and metagenomeSeq
+would be natural additions later.
 
 ---
 
-## Simulation design
+## How the data is simulated
 
-Synthetic count tables generated with **SparseDOSSA2**, fit to a public template (Human
-Microbiome Project) rather than to any of my own unpublished data, so the noise
-structure — sparsity, dispersion, taxon correlation — matches real microbiome data
-rather than an arbitrary distribution. A naive per-taxon negative binomial simulation,
-generated independently of any real template, would lack this structure and make every
-method look better than it would on real data.
+Real microbiome data is sparse, noisy, and correlated across taxa in ways that are hard
+to fake convincingly. So instead of generating counts from a simple textbook
+distribution, this uses **SparseDOSSA2**, fit to a public reference dataset (the Human
+Microbiome Project). That keeps the simulated data's noise and sparsity close to what
+real data looks like — a simpler simulation would make every method look better than it
+actually performs in practice.
 
-**Ground truth** is planted on top of the fitted background: a known subset of taxa are
-assigned a genuine effect size in one simulated group, everything else carries no signal
-beyond the noise model.
+On top of that realistic background, a known signal is planted: a chosen set of taxa
+are made genuinely different between the two groups, and everything else is left as
+pure noise. Because this signal is planted on purpose, it's the answer key every method
+is later checked against.
 
-**Grid:**
+**The grid:**
 
-| Axis | Levels |
+| What varies | Levels |
 |---|---|
 | Sample size | small, large |
 | Effect size | weak, strong |
-| Signal sparsity | few true positives, many true positives |
+| How many taxa carry signal | few, many |
 
-Every combination is simulated independently and run through all three methods, so the
-result is a performance surface rather than a single number per tool.
+Every combination is simulated separately and tested with all three methods, so the
+result is a full picture of where each method holds up and where it breaks down —
+not just one number per tool.
 
 ---
 
-## Evaluation
+## What gets measured
 
-For each method, on each scenario, against the known ground truth:
+For each method, on each scenario, checked against the planted signal:
 
-- **Sensitivity** — proportion of true positives recovered
-- **Precision** — proportion of reported hits that are real
-- **False discovery rate** — reported vs. the method's own nominal FDR threshold, which
-  is the specific failure Hawinkel et al. (2019, *Briefings in Bioinformatics*) found in
-  several DA methods on simulated data
-- **Runtime** — wall-clock time per method per scenario
-
-FDR is reported against the *nominal* threshold deliberately: a method can have
-reasonable precision while still failing to control FDR at the level it claims to,
-which is a different and more specific failure than "too many false positives" in the
-abstract.
+- **Sensitivity** — how many of the true differences it actually found
+- **Precision** — of what it reported, how much was actually real
+- **False discovery rate** — compared against what the method itself promises to
+  control. A method can look reasonably precise and still be quietly breaking its own
+  promise — that's the specific problem Hawinkel et al. (2019, *Briefings in
+  Bioinformatics*) found when they ran a similar test.
+- **Runtime** — how long each method takes per scenario
 
 ---
 
@@ -111,22 +115,22 @@ Microbiome-Differential-Abundance-Benchmark/
 BiocManager::install(c("SparseDOSSA2", "DESeq2", "ANCOMBC", "Maaslin2"))
 ```
 
-Run the four scripts in `code/` in order from the repo root. `01_fit_template.R` fits
-once and caches the model; the remaining scripts read from `data/` and `results/`
-relative to the repo root.
+Run the scripts in `code/` in order from the repo root. The first one fits the
+simulation template and caches it; everything after that reads and writes to `data/`
+and `results/` relative to the repo root.
 
 ---
 
-## What isn't here
+## What this doesn't cover
 
-- **The other 11 methods** from the full DA ecosystem — see above.
-- **Real-data validation.** A method that wins on simulation can still disappoint on
-  real data, because no simulator fully captures actual biological structure. This
-  repo's conclusions are about simulated data; a companion real-dataset check would be
-  the natural next step, not a substitute for one.
-- **Covariate adjustment and random effects.** All three tools support them; this
-  benchmark runs the simplest two-group comparison each was designed for, so the
-  results isolate the core distributional assumption rather than covariate handling.
+- **The other 11 methods** from the wider comparison — see above for why.
+- **Real data.** A method that wins here can still disappoint on an actual dataset,
+  because no simulation captures every quirk of real biology. This is a test on
+  simulated data, not a final verdict — checking the conclusions against a real dataset
+  would be the natural next step.
+- **Covariates and random effects.** All three tools can handle them; this benchmark
+  keeps to the simplest two-group comparison so the result reflects each method's core
+  assumptions rather than how it handles extra complexity.
 
 ---
 
