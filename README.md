@@ -101,15 +101,9 @@ and `results/` relative to the repo root.
 ---
 
 ## What this doesn't cover
-
-- **The other 11 methods** from the wider comparison — see above for why.
-- **Real data.** A method that wins here can still disappoint on an actual dataset,
-  because no simulation captures every quirk of real biology. This is a test on
-  simulated data, not a final verdict — checking the conclusions against a real dataset
-  would be the natural next step.
-- **Covariates and random effects.** All three tools can handle them; this benchmark
-  keeps to the simplest two-group comparison so the result reflects each method's core
-  assumptions rather than how it handles extra complexity.
+- **Most of the other methods** from that 14-method comparison. Installing, debugging, and keeping fourteen tools consistent is a lot of overhead for one person. Three is enough to show that the choice of method genuinely changes the answer. ALDEx2, Corncob, and metagenomeSeq would be reasonable next additions.
+- **Real data.** A method that wins here can still fall short on an actual dataset, because no simulation captures every quirk of real biology. This is a test on simulated data, not a final verdict — checking the conclusions against a real dataset would be the natural next step.
+- **Covariates and random effects.** All three tools support them, but this benchmark sticks to the simplest two-group comparison, so the result reflects each method's core assumptions rather than how well it handles extra complexity.
 
 ---
 
