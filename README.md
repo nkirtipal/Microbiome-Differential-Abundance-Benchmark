@@ -96,15 +96,9 @@ abstract.
 Microbiome-Differential-Abundance-Benchmark/
 │
 ├── code/
-│   ├── 01_fit_template.R      # SparseDOSSA2 fit to HMP
-│   ├── 02_simulate_data.R     # grid generation, ground truth saved alongside each table
-│   ├── 03_run_methods.R       # DESeq2, MaAsLin2, ANCOM-BC2 on every simulated dataset
-│   ├── 04_evaluate.R          # sensitivity, precision, FDR, runtime vs ground truth
-│   └── util_functions.R
-│
-├── data/                      # simulated tables + ground truth (RDS), per scenario
+├── data/
 ├── figures/
-├── results/                   # per-method, per-scenario metric tables
+├── results/
 │
 └── README.md
 ```
