@@ -8,7 +8,7 @@
 # each method x scenario pair, and writes the combined table to
 # results/benchmark_summary.csv.
 # ============================================================
-setwd("/media/nikhil/My_Book/Microb_Diff_Abun_Bench/")
+
 source("script/util_functions.R")
 
 scenario_files <- list.files("data", pattern = "\\.rds$", full.names = TRUE)
