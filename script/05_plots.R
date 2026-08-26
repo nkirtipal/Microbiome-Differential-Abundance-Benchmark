@@ -16,7 +16,6 @@ dir.create("figures", showWarnings = FALSE)
 
 final <- read.csv("results/benchmark_summary.csv")
 
-method_colors <- c("DESeq2" = "#E07A5F", "MaAsLin2" = "#1B6B70", "ANCOMBC2" = "#3D5A80")
 method_colors <- c("DESeq2" = "red3", "MaAsLin2" = "green4", "ANCOMBC2" = "#3D5A80")
 # ------------------------------------------------------------
 # 1. Precision vs sensitivity
@@ -88,7 +87,7 @@ p3 <- ggplot(conf, aes(x = method, y = count, fill = outcome)) +
                      labels = c(TP = "True positive", FP = "False positive",
                                 FN = "False negative (missed)")) +
   labs(
-    title = "Calls summed across all 8 scenarios",
+    title = "Outcomes by method, summed across scenarios",
     subtitle = "True positives, false positives, and missed signal per method",
     x = NULL, y = "Count", fill = NULL
   ) +
