@@ -12,7 +12,7 @@
 # dataset instead, that's done with fitCuts() / fit_SparseDOSSA2() —
 # see ?SparseDOSSA2::fitCuts for the current signature. Not used here.
 # ============================================================
-setwd("/media/nikhil/My_Book/Microb_Diff_Abun_Bench/")
+setwd("../Microb_Diff_Abun_Bench/")
 #
 library(SparseDOSSA2)
 #
