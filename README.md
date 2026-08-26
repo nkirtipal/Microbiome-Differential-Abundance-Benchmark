@@ -16,7 +16,7 @@ commonly used methods frequently disagreed with each other (Nearing et al. 2022,
 *Nature Communications*).
 
 The trouble is, on real data you don't know which method is right. There's no answer
-key to check against — just disagreement, with no way to say who's wrong.
+key to check against just disagreement, with no way to say who's wrong.
 
 Simulation fixes that. Build the data yourself, decide in advance which taxa are truly
 different between groups, and then see which method actually finds them.
@@ -142,7 +142,7 @@ against 21 seconds for ANCOM-BC2.
 BiocManager::install(c("SparseDOSSA2", "DESeq2", "ANCOMBC", "Maaslin2"))
 ```
 
-Run the scripts in `code/` in order from the repo root. The first one fits the
+Run the scripts in `script/` in order from the repo root. The first one fits the
 simulation template and caches it; everything after that reads and writes to `data/`
 and `results/` relative to the repo root.
 
