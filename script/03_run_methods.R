@@ -10,7 +10,7 @@
 # get one scenario working end to end for one method before
 # looping over the full grid. DESeq2 is the fastest to debug first.
 # ============================================================
-setwd("/media/nikhil/My_Book/Microb_Diff_Abun_Bench/")
+
 library(DESeq2)
 library(Maaslin2)
 library(ANCOMBC)
