@@ -2,21 +2,17 @@
 # 02 — Simulate the scenario grid
 # ============================================================
 #
-# This script is self-contained: it clears any previous data/
-# and results/ folders, sets the working directory, re-runs
-# 01_fit_template.R, then simulates all 8 scenarios and verifies
-# the grouping before finishing. Nothing else needs to be run
-# separately.
+# Run this on its own — it clears out any old data/ and results/,
+# re-runs 01_fit_template.R, then builds and checks all 8 scenarios
+# itself. Nothing else needs to run first.
 #
-# Three axes, two levels each -> 8 scenarios:
-#   sample size    : small (30) vs large (100)
-#   effect size    : weak (1) vs strong (5)
-#   signal density : few true positives (2%) vs many (10%)
+# Eight scenarios come from three things, two settings each: sample
+# size (30 or 100), effect size (weak or strong), and how much of
+# the signal is spiked in (2% or 10% of taxa).
 #
-# Each scenario is saved as data/<scenario_name>.rds via
-# save_scenario(), bundling the simulated counts, the metadata
-# (group labels), and the ground truth (which taxa were genuinely
-# given a planted effect) into one file so they can't drift apart.
+# Each scenario gets saved to data/<name>.rds through save_scenario()
+# — counts, metadata, and the ground truth all in one file, so they
+# can't end up out of sync with each other.
 # ============================================================
 
 source("script/01_fit_template.R")
