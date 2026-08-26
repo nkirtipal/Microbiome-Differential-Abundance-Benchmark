@@ -1,12 +1,11 @@
 # ============================================================
-# 04 — Evaluate all methods against ground truth
+# 04 — Evaluate all methods against the true signal
 # ============================================================
 #
-# Reads every data/<scenario>.rds (for ground truth) and every
-# results/<scenario>_<method>.rds (for what each method called),
-# computes sensitivity / precision / empirical FDR / runtime for
-# each method x scenario pair, and writes the combined table to
-# results/benchmark_summary.csv.
+# Reads every scenario from data/ and every result from
+# results/<scenario>_<method>.rds, works out sensitivity,
+# precision, empirical FDR, and runtime for each method on each
+# scenario, and writes it all into results/benchmark_summary.csv.
 # ============================================================
 
 source("script/util_functions.R")
