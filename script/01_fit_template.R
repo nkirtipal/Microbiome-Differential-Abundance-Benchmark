@@ -1,16 +1,9 @@
 # ============================================================
 # 01 — Simulation template
 # ============================================================
-#
-# SparseDOSSA2 ships with templates already fitted to real HMP1-II
-# data ("Stool", "Vaginal", "IBD"). Using the built-in "Stool"
-# template means the simulated data's sparsity, dispersion, and
-# taxon correlation structure come from real stool microbiome data,
-# with no need to download or fit anything from scratch.
-#
-# If you later want to fit a custom template to a different real
-# dataset instead, that's done with fitCuts() / fit_SparseDOSSA2() —
-# see ?SparseDOSSA2::fitCuts for the current signature. Not used here.
+# Uses SparseDOSSA2's built-in "Stool" template, already fitted to
+# real HMP1-II data, so simulated sparsity and dispersion match real
+# stool microbiome data with no download or fitting needed here.
 # ============================================================
 setwd("../Microb_Diff_Abun_Bench/")
 #
