@@ -121,18 +121,24 @@ against 21 seconds for ANCOM-BC2.
 ---
 
 ## Notes
-
 - **Most of the other methods from that 14-method comparison.** Installing, debugging,
   and keeping fourteen tools consistent is a lot of overhead for one person. Three is
   enough to show that the choice of method genuinely changes the answer. ALDEx2,
   Corncob, and metagenomeSeq would be reasonable next additions.
-- **Real data.** A method that wins here can still fall short on an actual dataset,
-  because no simulation captures every quirk of real biology. This is a test on
-  simulated data, not a final verdict — checking the conclusions against a real
-  dataset would be the natural next step.
+- **No real data was used.** verything here is simulated. A method that performs well
+- on this simulated data isn't guaranteed to perform the same way on an actual microbiome dataset,
+- because no simulation captures every complexity of real biology. Testing these same three methods
+-  on a real dataset with a known biological difference would be a reasonable next step, but that
+-  hasn't been done here.
 - **Covariates and random effects.** All three tools support them, but this benchmark
   sticks to the simplest two-group comparison, so the result reflects each method's
   core assumptions rather than how well it handles extra complexity.
+- **A single random seed.** Every scenario was simulated once. The specific numbers
+  (4%, 65%, 78%) would shift somewhat with a different seed; the pattern behind them —
+  MaAsLin2 staying close to its nominal FDR while the other two don't is consistent
+  with what Hawinkel et al. (2019) found across their own simulations, which is some
+  reassurance, but re-running this with several seeds and reporting a range would make
+  the claim stronger.
 
 ---
 
