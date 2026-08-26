@@ -4,7 +4,7 @@ Which microbiome differential abundance method should you trust? Three popular t
 three different ways of approaching the same problem, tested on simulated data where
 the right answer is already known.
 
->*Learning project. Simulated data.
+>* Learning project. Simulated data.
 
 ---
 
