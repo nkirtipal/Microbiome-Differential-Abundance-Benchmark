@@ -2,13 +2,14 @@
 # 03 — Run all three methods on every simulated scenario
 # ============================================================
 #
-# For each scenario in data/, runs DESeq2, MaAsLin2, and ANCOM-BC2,
-# and saves each method's significant calls (q < 0.05) plus its
-# runtime to results/<scenario>_<method>.rds.
+# For each scenario in data/, this runs DESeq2, MaAsLin2, and
+# ANCOM-BC2, then saves what each one called significant (q < 0.05)
+# along with how long it took to results/<scenario>_<method>.rds.
 #
-# Build and test this incrementally rather than all at once:
-# get one scenario working end to end for one method before
-# looping over the full grid. DESeq2 is the fastest to debug first.
+# Worth building this up gradually rather than running it all at
+# once — get one scenario working end to end for one method first.
+# DESeq2 is the quickest to debug, so start there.
+
 # ============================================================
 
 library(DESeq2)
