@@ -19,11 +19,6 @@
 # given a planted effect) into one file so they can't drift apart.
 # ============================================================
 
-unlink("data", recursive = TRUE)
-unlink("results", recursive = TRUE)
-
-setwd("/media/nikhil/My_Book/Microb_Diff_Abun_Bench/")
-
 source("script/01_fit_template.R")
 
 library(SparseDOSSA2)
