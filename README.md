@@ -126,10 +126,10 @@ against 21 seconds for ANCOM-BC2.
   enough to show that the choice of method genuinely changes the answer. ALDEx2,
   Corncob, and metagenomeSeq would be reasonable next additions.
 - **No real data was used.** verything here is simulated. A method that performs well
-- on this simulated data isn't guaranteed to perform the same way on an actual microbiome dataset,
-- because no simulation captures every complexity of real biology. Testing these same three methods
--  on a real dataset with a known biological difference would be a reasonable next step, but that
--  hasn't been done here.
+  on this simulated data isn't guaranteed to perform the same way on an actual microbiome dataset,
+  because no simulation captures every complexity of real biology. Testing these same three methods
+  on a real dataset with a known biological difference would be a reasonable next step, but that
+  hasn't been done here.
 - **Covariates and random effects.** All three tools support them, but this benchmark
   sticks to the simplest two-group comparison, so the result reflects each method's
   core assumptions rather than how well it handles extra complexity.
