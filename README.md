@@ -113,7 +113,9 @@ MaAsLin2 was also the fastest by a wide margin — under half a second per scena
 against 21 seconds for ANCOM-BC2.
 
 ![precision vs sensitivity](figures/precision_vs_sensitivity.png)
+
 ![FDR promise vs reality](figures/fdr_promise_vs_reality.png)
+
 ![confusion totals](figures/confusion_totals.png)
 
 ---
