@@ -76,7 +76,7 @@ For each method, on each scenario, checked against the planted signal:
 - **Precision** — of what it reported, how much was real
 - **Empirical FDR** — how often a reported hit was wrong, checked against the 5% the
   method promises to control
-- **Runtime**
+- **Runtime** — how long each method took to run, in seconds
 
 ---
 
